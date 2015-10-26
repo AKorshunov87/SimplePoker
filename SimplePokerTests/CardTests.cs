@@ -4,11 +4,17 @@ using SimplePoker;
 namespace SimplePokerTests {
     [TestFixture]
     public class CardTests {
+        #region Helpers
+
         void CardValuesTest(Card card, Value value, Suit suit, string name) {
             Assert.AreEqual(value, card.Value);
             Assert.AreEqual(suit, card.Suit);
             Assert.AreEqual(name, card.Name);
         }
+
+        #endregion
+
+        #region Tests
 
         [Test]
         public void SetCardValues() {
@@ -17,5 +23,7 @@ namespace SimplePokerTests {
             card = new Card(Suit.Diamonds, Value.Jack);
             CardValuesTest(card, Value.Jack, Suit.Diamonds, "JD");
         }
+
+        #endregion
     }
 }
