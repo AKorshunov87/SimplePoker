@@ -10,10 +10,10 @@ namespace SimplePokerTests {
         }
 
         [Test]
-        public void PlayerValues() {
-            Player defaultPlayer = new Player();
-            PlayerValuesTest(defaultPlayer, "Anonymous");
-            Player player = new Player("John");
+        public void SetPlayerValues() {
+            Player player = new Player();
+            PlayerValuesTest(player, "Anonymous");
+            player = new Player("John");
             PlayerValuesTest(player, "John");
         }
     }
