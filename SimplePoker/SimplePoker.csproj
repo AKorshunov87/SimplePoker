@@ -46,8 +46,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Cards\Suit.cs" />
     <Compile Include="Cards\Value.cs" />
-    <Compile Include="Subsets\ISubset.cs" />
+    <Compile Include="Subsets\Flush.cs" />
+    <Compile Include="Subsets\FourOfAKind.cs" />
+    <Compile Include="Subsets\HighCard.cs" />
+    <Compile Include="Subsets\Subset.cs" />
     <Compile Include="Subsets\SubsetType.cs" />
+    <Compile Include="Subsets\ThreeOfAKind.cs" />
+    <Compile Include="Subsets\TwoOfAKind.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

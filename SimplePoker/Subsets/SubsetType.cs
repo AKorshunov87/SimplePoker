@@ -6,7 +6,7 @@
         HighCard = 1,
         TwoOfAKind = 2,
         ThreeOfAKind = 3,
-        FourOfAKind = 4,
-        Flush = 5
+        Flush = 4,
+        FourOfAKind = 5
     }
 }
