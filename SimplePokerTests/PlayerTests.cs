@@ -1,10 +1,12 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using NUnit.Framework;
 using SimplePoker;
 
 namespace SimplePokerTests {
     [TestFixture]
     public class PlayerTests {
+
         #region Helpers
 
         void PlayerValuesTest(Player player, string name, Card[] cards) {
@@ -29,13 +31,16 @@ namespace SimplePokerTests {
         public void SetPlayerValues() {
             Player player = new Player();
             PlayerValuesTest(player, "Anonymous", null);
-            player = new Player("John", new Card[] { new Card(Suit.Hearts, Value.Seven) });
+            player = new Player("John", null);
             PlayerValuesTest(player, "John", null);
-            //TODO:: Issue - DECK not found, 1 player can get 5 same cards!
+            Assert.Throws(typeof(Exception), () => { player.Cards = new Card[] { new Card(Suit.Hearts, Value.Seven) }; });
+            // We can create players with some strange cards but we can't add them to the game
             player.Cards = new Card[5] { new Card(Suit.Hearts, Value.Seven), new Card(Suit.Hearts, Value.Seven), new Card(Suit.Diamonds, Value.Ace), new Card(Suit.Hearts, Value.Seven), new Card(Suit.Hearts, Value.Seven) };
-            PlayerValuesTest(player, "John", new Card[5] { new Card(Suit.Hearts, Value.Seven), new Card(Suit.Hearts, Value.Seven), new Card(Suit.Hearts, Value.Seven), new Card(Suit.Hearts, Value.Seven), new Card(Suit.Diamonds, Value.Ace) });
+            player.Name = "AlwaysWinner";
+            PlayerValuesTest(player, "AlwaysWinner", new Card[5] { new Card(Suit.Hearts, Value.Seven), new Card(Suit.Hearts, Value.Seven), new Card(Suit.Hearts, Value.Seven), new Card(Suit.Hearts, Value.Seven), new Card(Suit.Diamonds, Value.Ace) });
         }
 
         #endregion
+
     }
 }

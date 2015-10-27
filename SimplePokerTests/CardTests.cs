@@ -4,6 +4,7 @@ using SimplePoker;
 namespace SimplePokerTests {
     [TestFixture]
     public class CardTests {
+
         #region Helpers
 
         void CardValuesTest(Card card, Value value, Suit suit, string name) {
@@ -25,5 +26,6 @@ namespace SimplePokerTests {
         }
 
         #endregion
+
     }
 }

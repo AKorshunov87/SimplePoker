@@ -11,6 +11,7 @@ namespace SimplePoker {
         Value value;
         Suit suit;
         string name;
+        Player owner;
 
         #endregion
 
@@ -31,6 +32,14 @@ namespace SimplePoker {
         /// </summary>
         public string Name { get { return name; } }
 
+        /// <summary>
+        /// The player who owns the card
+        /// </summary>
+        internal Player Owner {
+            get { return owner; }
+            set { owner = value; }
+        }
+
         #endregion
 
         #region Constructors
@@ -39,6 +48,7 @@ namespace SimplePoker {
             this.value = value;
             this.suit = suit;
             this.name = GetName();
+            this.owner = null;
         }
 
         #endregion
