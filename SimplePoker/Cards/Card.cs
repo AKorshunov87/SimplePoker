@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SimplePoker {
     /// <summary>
@@ -49,6 +51,17 @@ namespace SimplePoker {
             this.suit = suit;
             this.name = GetName();
             this.owner = null;
+        }
+
+        #endregion
+
+        #region Methods
+
+        public static List<Card> Sort(Card[] cards) {
+            List<Card> result = new List<Card>();
+            if (cards != null)
+                result = cards.OrderByDescending(q => (int)q.value).ToList();
+            return result;
         }
 
         #endregion
