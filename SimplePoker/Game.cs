@@ -55,6 +55,22 @@ namespace SimplePoker {
             return players;
         }
 
+        /// <summary>
+        /// Get a winner(s)! (more than one in case of a tie)
+        /// </summary>
+        /// <returns>Player(s) who win this game</returns>
+        public Player GetWinner(){
+            Player result = null;
+
+            return result;
+        }
+
+        #endregion
+
+        #region Helpers
+
+
+
         #endregion
 
     }

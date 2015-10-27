@@ -76,8 +76,10 @@ namespace SimplePoker {
         }
 
         void SetSubset() {
-            List<Card> sortedCards = Card.Sort(cards);
-            this.subset = SubsetFactory.CreateSubset(sortedCards);
+            if (cards != null) {
+                List<Card> sortedCards = Card.Sort(cards);
+                this.subset = SubsetFactory.CreateSubset(sortedCards);
+            }
         }
 
         #endregion
