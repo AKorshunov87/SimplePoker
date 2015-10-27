@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SimplePoker.Subsets {
     /// <summary>
@@ -16,9 +17,10 @@ namespace SimplePoker.Subsets {
         /// <returns>Subset</returns>
         internal static Subset CreateSubset(List<Card> sortedCards) {
             Subset result = null;
-            foreach(SubsetType type in Enum.GetValues(typeof(SubsetType))){
+            SubsetType[] subsetTypes = (SubsetType[])Enum.GetValues(typeof(SubsetType));
+            foreach (SubsetType type in subsetTypes.OrderByDescending(q => (int)q)) {
                 Subset temp = GetSubset(type, sortedCards);
-                if(temp.Set.Count > 0){
+                if (temp.Set.Count > 0) {
                     result = temp;
                     break;
                 }

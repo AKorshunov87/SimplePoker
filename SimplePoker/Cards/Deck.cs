@@ -60,6 +60,7 @@ namespace SimplePoker {
         #region Helpers
 
         void Initialize() {
+            this.cards = new Dictionary<string, Card>();
             foreach (Value value in Enum.GetValues(typeof(Value))) {
                 foreach (Suit suit in Enum.GetValues(typeof(Suit))) {
                     Card card = new Card(suit, value);

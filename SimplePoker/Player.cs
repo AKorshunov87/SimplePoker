@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using SimplePoker.Subsets;
 
 namespace SimplePoker {
@@ -31,7 +32,10 @@ namespace SimplePoker {
         /// </summary>
         public Card[] Cards {
             get { return cards; }
-            set { SetCards(value); }
+            set {
+                SetCards(value);
+                SetSubset();
+            }
         }
 
         /// <summary>
@@ -76,7 +80,7 @@ namespace SimplePoker {
         }
 
         void SetSubset() {
-            if (cards != null) {
+            if (cards != null && cards.Any(c => c != null)) {
                 List<Card> sortedCards = Card.Sort(cards);
                 this.subset = SubsetFactory.CreateSubset(sortedCards);
             }

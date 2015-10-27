@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SimplePoker {
     /// <summary>
@@ -59,9 +60,17 @@ namespace SimplePoker {
         /// Get a winner(s)! (more than one in case of a tie)
         /// </summary>
         /// <returns>Player(s) who win this game</returns>
-        public Player GetWinner(){
-            Player result = null;
-
+        public List<Player> GetWinners() {
+            List<Player> result = new List<Player>();
+            if (players != null && players.Count > 0) {
+                List<Player> sortedPlayers = players.OrderByDescending(p => (int)p.Subset.SubsetType).ToList();
+                Player firstWinner = sortedPlayers.First();
+                result.Add(firstWinner);
+                List<Player> winnersList = sortedPlayers.Where(p => p.Subset.SubsetType == firstWinner.Subset.SubsetType).ToList();
+                if (winnersList.Count > 1) {
+                    result = CompareTails(winnersList);
+                }
+            }
             return result;
         }
 
@@ -69,7 +78,35 @@ namespace SimplePoker {
 
         #region Helpers
 
+        List<Player> CompareTails(List<Player> winnersList) {
+            Player prevWinner = null;
+            List<Player> result = new List<Player>();
+            foreach (Player player in winnersList) {
+                if (prevWinner == null) {
+                    prevWinner = player;
+                    result.Add(player);
+                    continue;
+                }
 
+                List<Card> tail = player.Subset.Tail;
+                List<Card> prevWinnerTail = prevWinner.Subset.Tail;
+                int equalityCount = 0;
+                for (int i = 0; i < tail.Count; i++) {
+                    Card card = tail[i];
+                    Card prevWinnerCard = prevWinnerTail[i];
+                    if ((int)card.Value > (int)prevWinnerCard.Value) {
+                        result.Clear();
+                        result.Add(player);
+                        prevWinner = player;
+                        break;
+                    }
+                    equalityCount++;
+                }
+                if (equalityCount == tail.Count)
+                    result.Add(player);
+            }
+            return result;
+        }
 
         #endregion
 
