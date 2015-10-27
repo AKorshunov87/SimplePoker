@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using SimplePoker.Subsets;
 
 namespace SimplePoker {
     /// <summary>
@@ -10,6 +12,7 @@ namespace SimplePoker {
 
         string name;
         Card[] cards;
+        Subset subset;
 
         #endregion
 
@@ -31,6 +34,11 @@ namespace SimplePoker {
             set { SetCards(value); }
         }
 
+        /// <summary>
+        /// Subset that player have in his hand(Four of a kind, Flush, etc)
+        /// </summary>
+        internal Subset Subset { get { return subset; } }
+
         #endregion
 
         #region Constructors
@@ -51,6 +59,7 @@ namespace SimplePoker {
         public Player(string name, Card[] cards) : this() {
             this.name = name;
             SetCards(cards);
+            SetSubset();
         }
 
         #endregion
@@ -64,6 +73,11 @@ namespace SimplePoker {
                 else
                     throw new Exception(String.Format("Each player can have 5 cards only."));
             }
+        }
+
+        void SetSubset() {
+            List<Card> sortedCards = Card.Sort(cards);
+            this.subset = SubsetFactory.CreateSubset(sortedCards);
         }
 
         #endregion
