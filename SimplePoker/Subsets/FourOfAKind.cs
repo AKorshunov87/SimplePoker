@@ -10,7 +10,7 @@ namespace SimplePoker.Subsets {
                 int secondCardValue = (int)sortedCards[i + 1].Value;
                 int thirdCardValue = (int)sortedCards[i + 2].Value;
                 int fourthCardValue = (int)sortedCards[i + 3].Value;
-                if (firstCardValue == secondCardValue && secondCardValue == thirdCardValue) {
+                if (firstCardValue == secondCardValue && secondCardValue == thirdCardValue && thirdCardValue == fourthCardValue) {
                     Set = new List<Card> { sortedCards[i], sortedCards[i + 1], sortedCards[i + 2], sortedCards[i + 3] };
                     Tail = sortedCards.Where(q => (int)q.Value != firstCardValue).ToList();
                     break;
